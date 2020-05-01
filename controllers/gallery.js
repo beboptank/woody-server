@@ -7,7 +7,7 @@ flickr.people.getPhotos({
     user_id: process.env.FLICKR_ID
 })
     .then(function (res) {
-        console.log('awesome my dude', res.body);
+        console.log('awesome my dude', res.json());
     })
     .catch(function (err) {
         console.error('uh oh', err);
