@@ -3,12 +3,16 @@ const Flickr = require('flickr-sdk');
 
 let flickr = new Flickr(process.env.FLICKR_API_KEY);
 
-flickr.people.getPhotos({
-    user_id: process.env.FLICKR_ID
-})
-    .then(function (res) {
-        console.log('awesome my dude', res.json());
+const getPhotos = (req, res) => {
+    flickr.people.getPhotos({
+        user_id: process.env.FLICKR_ID
     })
-    .catch(function (err) {
-        console.error('uh oh', err);
-    });
+        .then(data => {
+            console.log(res.json(data));
+        })
+        .catch(err => res.status(400).json('Unable to work with Flickr API.'));
+};
+
+ module.exports = {
+    getPhotos: getPhotos
+ };

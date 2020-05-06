@@ -18,11 +18,11 @@ app.get('/', (req, res) => {
 });
 
 app.get('/events', (req, res) => {
-    res.send(res.json());
+    events.getEvents(req, res);
 });
 
 app.get('/gallery', (req, res) => {
-    res.send(res.json());
+    gallery.getPhotos(req, res);
 });
 
 app.listen(3000, () => {

@@ -8,12 +8,17 @@ const calendar = google.calendar({
 
 const params = {
     calendarId: process.env.CALENDAR_ID
-}
+};
 
-calendar.events.list(params)
-    .then(res => {
-        console.log(res);
-    })
-    .catch(error => {
-        console.log(error);
-    });
+const getEvents = (req, res) => {
+    calendar.events.list(params)
+        .then(data => {
+            console.log(res.json(data));
+        })
+        .catch(err => res.status(400).json("Unable to work with Google Calendar API.")
+        );
+};
+
+module.exports = {
+    getEvents: getEvents
+};
